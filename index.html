@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tamagotchi Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mary+Kate&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #fff380; /* Amarillo más claro */
+      font-family: 'Nunito Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .tamagotchi {
+      position: relative;
+      width: 320px;
+      height: 450px;
+      background: #f1948a; /* Rosa */
+      border-radius: 60% 60% 50% 50%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow: hidden;
+      border: 4px solid #e74c3c; /* Borde más oscuro */
+      background-image: 
+    }
+
+    .tamagotchi::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: #e74c3c; /* Borde más oscuro */
+      border-radius: 50%;
+      border: 3px solid #f1948a;
+      z-index: 10;
+    }
+
+    .tamagotchi::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      z-index: 11;
+    }
+
+    .brand {
+      color: #ffffff;
+      font-weight: bold;
+text-shadow: 4px 4px 0 #e74c3c;
+font-size: 26px;
+      <link href="  https://fontsfree.net/marykate-font-download.html#google_vignette" rel="stylesheet">
+      <link rel="stylesheet" href="css.css">
+
+      text-shadow: 4px 4px 0 #e74c3c;
+      margin-top: 10px;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .screen-frame {
+      width: 240px;
+      height: 180px;
+      background: #e74c3c; /* Rosa intenso como marco de pantalla */
+      border-radius: 8px;
+      margin: 20px 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border: 3px solid #e74c3c;
+    }
+
+    .screen {
+      width: 210px;
+      height: 150px;
+      background: #7bed9f; /* Verde claro como pantalla */
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #2c3e50;
+      transition: background 0.5s ease;
+      text-align: center;
+      padding: 5px;
+      border: 2px solid #e74c3c;
+    }
+
+    .pet-display {
+      font-size: 40px;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      z-index: 10;
+      position: relative;
+    }
+
+    .request-text {
+ font-weight: bold;
+font-size: 26px;
+      <link href="  https://fontsfree.net/marykate-font-download.html#google_vignette" rel="stylesheet">
+      <link rel="stylesheet" href="css.css">
+
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+      padding: 5px;
+      line-height: 1.4;
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+
+    .screen.blackout {
+      background: #000;
+      color: #fff;
+    }
+
+    .animation-object {
+      position: absolute;
+      font-size: 35px;
+      z-index: 5;
+      opacity: 0;
+    }
+
+    .bed {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
+      opacity: 0;
+      z-index: 4;
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #e74c3c; /* Rosa */
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s, background 0.2s;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      background: #f1948a; /* Rosa más claro */
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    .lives-container {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .heart {
+      font-size: 25px;
+      color: #e74c3c;
+    }
+
+    .heart.empty {
+      color: #888;
+    }
+
+    .streak-display {
+      margin-top: 8px;
+      font-size: 12px;
+      color: white;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    .message {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(0,0,0,0.7);
+      padding: 5px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.5s;
+      font-family: 'Nunito Sans', sans-serif;
+      z-index: 20;
+    }
+
+    .message.show {
+      opacity: 1;
+    }
+
+    .animation {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 35px;
+      animation: bounce 0.5s ease-in-out;
+      z-index: 100;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    .broken-heart {
+      color: #ff4d4d;
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+      25% { transform: translate(-50%, -50%) rotate(-10deg); }
+      75% { transform: translate(-50%, -50%) rotate(10deg); }
+    }
+
+    .heal-heart {
+      color: #4dff4d;
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .new-game-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: #e74c3c; /* Rosa */
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    .new-game-btn:hover {
+      background: #f1948a; /* Rosa más claro */
+    }
+
+    /* Animaciones específicas */
+    @keyframes eatAnimation {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(5deg); }
+      50% { transform: scale(1) rotate(0deg); }
+      75% { transform: scale(1.1) rotate(-5deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    @keyframes playJump {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-25px) rotate(10deg); }
+      50% { transform: translateY(0px) rotate(0deg); }
+      75% { transform: translateY(-15px) rotate(-10deg); }
+    }
+
+    @keyframes sleepRock {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.05) rotate(2deg); }
+    }
+
+    /* Estilos para la mascota personalizada */
+    .monster {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .monster-body {
+      width: 50px;
+      height: 50px;
+      background: #f1c40f; /* Amarillo */
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .eye {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      top: 18px;
+    }
+
+    .eye.left {
+      left: 12px;
+    }
+
+    .eye.right {
+      right: 12px;
+    }
+
+    .pupil {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: black;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+    }
+
+    .mouth {
+      position: absolute;
+      width: 20px;
+      height: 8px;
+      background: #e74c3c;
+      border-radius: 0 0 10px 10px;
+      top: 35px;
+    }
+
+    .cheek {
+      position: absolute;
+      width: 12px;
+      height: 8px;
+      background: #ff9f43; /* Rosa mejillas */
+      border-radius: 50%;
+      top: 28px;
+    }
+
+    .cheek.left {
+      left: 6px;
+    }
+
+    .cheek.right {
+      right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tamagotchi">
+    <div class="brand">TAMAGOTCHI</div>
+
+    <div class="screen-frame">
+      <div class="screen" id="screen">
+        <div class="pet-display" id="pet">
+          <div class="monster">
+            <div class="monster-body">
+              <div class="eye left">
+                <div class="pupil"></div>
+              </div>
+              <div class="eye right">
+                <div class="pupil"></div>
+              </div>
+              <div class="cheek left"></div>
+              <div class="cheek right"></div>
+              <div class="mouth"></div>
+            </div>
+          </div>
+        </div>
+        <div class="request-text" id="requestText">¡Haz clic en Nueva Partida para empezar!</div>
+        <div class="animation-object" id="food">🍗</div>
+        <div class="animation-object" id="ball">⚽</div>
+        <div class="bed" id="bed">🛏️</div>
+        <div class="message" id="message"></div>
+      </div>
+    </div>
+
+    <div class="lives-container" id="livesContainer">
+      <span class="heart" id="heart1">❤️</span>
+      <span class="heart" id="heart2">❤️</span>
+      <span class="heart" id="heart3">❤️</span>
+    </div>
+
+    <div class="streak-display">Correctas seguidas: <span id="streak">0</span></div>
+
+    <div class="buttons-container">
+      <button class="btn" id="eatBtn">🍗</button>
+      <button class="btn" id="playBtn">⚽</button>
+      <button class="btn" id="sleepBtn">😴</button>
+    </div>
+
+    <button class="new-game-btn" id="newGameBtn">Nueva Partida</button>
+  </div>
+
+  <script>
+    // Función para mezclar un array (algoritmo de Fisher-Yates)
+    function shuffleArray(array) {
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
+
+    // Estado del juego
+    let lives = 3;
+    let streak = 0;
+    let currentRequestIndex = 0;
+    let shuffledRequests = [];
+    let isSleeping = false;
+    let isAnimating = false;
+
+    // Lista de 40 peticiones relacionadas solo con comer, jugar y dormir
+    const originalRequests = [
+      { question: "¡Tengo mucha hambre!", correct: "eat" },
+      { question: "¡Necesito jugar ahora!", correct: "play" },
+      { question: "¡Estoy muy cansado, quiero dormir!", correct: "sleep" },
+      { question: "¡Mi estómago hace ruidos!", correct: "eat" },
+      { question: "¡Quiero jugar con mi pelota!", correct: "play" },
+      { question: "¡Tengo sueño, necesito descansar!", correct: "sleep" },
+      { question: "¡Estoy hambriento!", correct: "eat" },
+      { question: "¡Vamos a jugar al fútbol!", correct: "play" },
+      { question: "¡Mis ojos se cierran, quiero dormir!", correct: "sleep" },
+      { question: "¡Necesito un bocadillo!", correct: "eat" },
+      { question: "¡Juguemos a correr!", correct: "play" },
+      { question: "¡Estoy agotado, necesito dormir!", correct: "sleep" },
+      { question: "¡Tengo antojo de comida!", correct: "eat" },
+      { question: "¡Quiero divertirme jugando!", correct: "play" },
+      { question: "¡Necesito una siesta!", correct: "sleep" },
+      { question: "¡Estoy débil por falta de comida!", correct: "eat" },
+      { question: "¡Juguemos a atrapar la pelota!", correct: "play" },
+      { question: "¡No puedo mantener los ojos abiertos!", correct: "sleep" },
+      { question: "¡Mi panza gruñe de hambre!", correct: "eat" },
+      { question: "¡Vamos a jugar un rato!", correct: "play" },
+      { question: "¡Necesito dormir profundamente!", correct: "sleep" },
+      { question: "¡Tengo hambre de verdad!", correct: "eat" },
+      { question: "¡Quiero jugar sin parar!", correct: "play" },
+      { question: "¡Estoy exhausto, quiero dormir!", correct: "sleep" },
+      { question: "¡Necesito comer algo ya!", correct: "eat" },
+      { question: "¡Juguemos a lo loco!", correct: "play" },
+      { question: "¡Tengo mucho sueño!", correct: "sleep" },
+      { question: "¡Estoy famélico!", correct: "eat" },
+      { question: "¡Vamos a jugar y saltar!", correct: "play" },
+      { question: "¡Necesito cerrar los ojos!", correct: "sleep" },
+      { question: "¡Mi estómago está vacío!", correct: "eat" },
+      { question: "¡Quiero jugar con energía!", correct: "play" },
+      { question: "¡Estoy listo para dormir!", correct: "sleep" },
+      { question: "¡Tengo urgencia de comer!", correct: "eat" },
+      { question: "¡Juguemos hasta cansarnos!", correct: "play" },
+      { question: "¡Necesito mi cama ahora!", correct: "sleep" },
+      { question: "¡Estoy muriendo de hambre!", correct: "eat" },
+      { question: "¡Vamos a jugar a toda velocidad!", correct: "play" },
+      { question: "¡Quiero dormir como un bebé!", correct: "sleep" },
+      { question: "¡Necesito alimento urgente!", correct: "eat" }
+    ];
+
+    // Elementos del DOM
+    const screen = document.getElementById('screen');
+    const pet = document.getElementById('pet');
+    const requestText = document.getElementById('requestText');
+    const message = document.getElementById('message');
+    const eatBtn = document.getElementById('eatBtn');
+    const playBtn = document.getElementById('playBtn');
+    const sleepBtn = document.getElementById('sleepBtn');
+    const streakDisplay = document.getElementById('streak');
+    const newGameBtn = document.getElementById('newGameBtn');
+    const heart1 = document.getElementById('heart1');
+    const heart2 = document.getElementById('heart2');
+    const heart3 = document.getElementById('heart3');
+    const food = document.getElementById('food');
+    const ball = document.getElementById('ball');
+    const bed = document.getElementById('bed');
+
+    // Inicializar
+    function init() {
+      lives = 3;
+      streak = 0;
+      currentRequestIndex = 0;
+      isSleeping = false;
+      isAnimating = false;
+      // Mezclar las peticiones al iniciar el juego
+      shuffledRequests = shuffleArray(originalRequests);
+      updateLives();
+      updateStreak();
+      requestText.textContent = "¡Haz clic en Nueva Partida para empezar!";
+      pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+      pet.style.animation = '';
+      showNextRequest();
+    }
+
+    // Mostrar siguiente petición (permanente hasta responder)
+    function showNextRequest() {
+      if (currentRequestIndex >= shuffledRequests.length) {
+        requestText.textContent = "¡Felicidades! Has completado todas las peticiones.";
+        pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+        pet.style.transform = 'scale(1.2)';
+        return;
+      }
+
+      const req = shuffledRequests[currentRequestIndex];
+      requestText.textContent = req.question;
+      pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+      pet.style.animation = '';
+    }
+
+    // Mostrar mensaje temporal (para feedback)
+    function showMessage(text) {
+      message.textContent = text;
+      message.classList.add('show');
+      setTimeout(() => {
+        message.classList.remove('show');
+      }, 2000);
+    }
+
+    // Animación de comer: la mascota agarra y come el pollo
+    function animateEat() {
+      isAnimating = true;
+      pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+      
+      // Mostrar comida
+      food.style.opacity = '1';
+      food.style.left = '75%';
+      food.style.top = '35%';
+      
+      // Animación de la mascota acercándose al pollo
+      pet.style.transition = 'transform 0.8s ease';
+      pet.style.transform = 'translateX(40px) scale(1.1)';
+      
+      setTimeout(() => {
+        // Agarrar el pollo
+        food.style.opacity = '0';
+        pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+        
+        // Animación de masticación
+        let chewCount = 0;
+        const chewInterval = setInterval(() => {
+          chewCount++;
+          if (chewCount % 2 === 1) {
+            pet.style.transform = 'translateX(40px) scale(1.2)';
+          } else {
+            pet.style.transform = 'translateX(40px) scale(1.0)';
+          }
+          
+          if (chewCount > 6) {
+            clearInterval(chewInterval);
+            pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+            pet.style.transform = 'translateX(40px) scale(1.2)'; // Sonrisa
+            setTimeout(() => {
+              pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+              pet.style.transform = 'translateX(0px) scale(1)';
+              pet.style.transition = '';
+              isAnimating = false;
+              currentRequestIndex++;
+              showNextRequest();
+            }, 800);
+          }
+        }, 200);
+      }, 800);
+    }
+
+    // Animación de jugar: la mascota agarra y juega con la pelota
+    function animatePlay() {
+      isAnimating = true;
+      pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+      
+      // Mostrar pelota
+      ball.style.opacity = '1';
+      ball.style.left = '25%';
+      ball.style.top = '30%';
+      
+      // Animación de la mascota acercándose a la pelota
+      pet.style.transition = 'transform 0.6s ease';
+      pet.style.transform = 'translateX(-30px) scale(1.1)';
+      
+      setTimeout(() => {
+        // Agarrar la pelota
+        ball.style.opacity = '0';
+        pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+        
+        // Animación de jugar con la pelota
+        let bounceCount = 0;
+        const bounceInterval = setInterval(() => {
+          bounceCount++;
+          if (bounceCount % 2 === 1) {
+            pet.style.transform = 'translateX(-30px) translateY(-20px) scale(1.2)';
+          } else {
+            pet.style.transform = 'translateX(-30px) translateY(0px) scale(1.0)';
+          }
+          
+          if (bounceCount > 8) {
+            clearInterval(bounceInterval);
+            pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+            pet.style.transform = 'translateX(-30px) scale(1.2)'; // Sonrisa
+            setTimeout(() => {
+              pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+              pet.style.transform = 'translateX(0px) scale(1)';
+              pet.style.transition = '';
+              isAnimating = false;
+              currentRequestIndex++;
+              showNextRequest();
+            }, 800);
+          }
+        }, 150);
+      }, 600);
+    }
+
+    // Animación de dormir con cama real
+    function animateSleep() {
+      isSleeping = true;
+      isAnimating = true;
+      
+      // Mostrar cama
+      bed.style.opacity = '1';
+      
+      // Mover mascota hacia la cama
+      pet.style.transition = 'all 1s ease';
+      pet.style.transform = 'translateY(30px)';
+      
+      setTimeout(() => {
+        // Parpadeo antes de dormir
+        let blinkCount = 0;
+        const blinkInterval = setInterval(() => {
+          if (blinkCount < 2) {
+            pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+            setTimeout(() => {
+              pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left" style="background: transparent;"></div><div class="eye right" style="background: transparent;"></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>'; // Ojos cerrados
+              blinkCount++;
+            }, 150);
+          } else {
+            clearInterval(blinkInterval);
+            pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left" style="background: transparent;"></div><div class="eye right" style="background: transparent;"></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>'; // Ojos cerrados
+            pet.style.animation = 'sleepRock 2s ease-in-out infinite';
+            
+            setTimeout(() => {
+              screen.classList.add('blackout');
+              requestText.textContent = "ZZZ... Nuevo día";
+              
+              setTimeout(() => {
+                screen.classList.remove('blackout');
+                bed.style.opacity = '0';
+                pet.style.animation = '';
+                pet.style.transform = 'translateY(0px)';
+                pet.innerHTML = '<div class="monster"><div class="monster-body"><div class="eye left"><div class="pupil"></div></div><div class="eye right"><div class="pupil"></div></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth"></div></div></div>';
+                pet.style.transition = '';
+                isSleeping = false;
+                isAnimating = false;
+                currentRequestIndex++;
+                showNextRequest();
+              }, 2000);
+            }, 1000);
+          }
+        }, 400);
+      }, 1000);
+    }
+
+    // Animación de error
+    function animateError() {
+      pet.style.animation = '';
+      pet.style.transform = 'scale(0.9)';
+      pet.style.filter = 'hue-rotate(180deg)'; // Cambia color a rojo
+      setTimeout(() => {
+        pet.style.transform = 'scale(1)';
+        pet.style.filter = '';
+      }, 800);
+
+      const brokenHeart = document.createElement('div');
+      brokenHeart.className = 'animation broken-heart';
+      brokenHeart.textContent = '💔';
+      screen.appendChild(brokenHeart);
+      setTimeout(() => screen.removeChild(brokenHeart), 1000);
+    }
+
+    // Animación de curación (vida extra)
+    function animateHeal() {
+      const healHeart = document.createElement('div');
+      healHeart.className = 'animation heal-heart';
+      healHeart.textContent = '❤️';
+      screen.appendChild(healHeart);
+      setTimeout(() => screen.removeChild(healHeart), 1000);
+    }
+
+    // Actualizar vidas
+    function updateLives() {
+      heart1.classList.remove('empty');
+      heart2.classList.remove('empty');
+      heart3.classList.remove('empty');
+      if (lives < 1) heart1.classList.add('empty');
+      if (lives < 2) heart2.classList.add('empty');
+      if (lives < 3) heart3.classList.add('empty');
+    }
+
+    // Actualizar racha
+    function updateStreak() {
+      streakDisplay.textContent = streak;
+    }
+
+    // Manejar respuesta
+    function handleAnswer(answer) {
+      if (isAnimating || isSleeping) return;
+      if (currentRequestIndex >= shuffledRequests.length) return;
+
+      const req = shuffledRequests[currentRequestIndex];
+      if (!req) return;
+
+      if (answer === req.correct) {
+        streak++;
+        updateStreak();
+
+        if (streak === 3 && lives < 3) {
+          lives++;
+          animateHeal();
+          showMessage("¡+1 VIDA!");
+          streak = 0;
+          updateStreak();
+          updateLives();
+        } else if (streak === 3) {
+          streak = 0;
+          updateStreak();
+        }
+
+        showMessage("¡Bien hecho!");
+        if (answer === 'eat') animateEat();
+        else if (answer === 'play') animatePlay();
+        else if (answer === 'sleep') animateSleep();
+      } else {
+        streak = 0;
+        updateStreak();
+        lives--;
+        updateLives();
+
+        if (lives <= 0) {
+          requestText.textContent = "¡Tu mascota se ha ido... :(";
+          pet.innerHTML = '<div class="monster"><div class="monster-body" style="background: #7f8c8d;"><div class="eye left" style="background: transparent;"></div><div class="eye right" style="background: transparent;"></div><div class="cheek left"></div><div class="cheek right"></div><div class="mouth" style="background: #7f8c8d;"></div></div></div>';
+          pet.style.transform = 'scale(0.8)';
+          showMessage("¡Presiona Nueva Partida para revivirla!");
+          return;
+        }
+
+        animateError();
+        showMessage("¡Incorrecto! Tu mascota llora.");
+        currentRequestIndex++;
+        showNextRequest();
+      }
+    }
+
+    // Event listeners
+    eatBtn.addEventListener('click', () => handleAnswer('eat'));
+    playBtn.addEventListener('click', () => handleAnswer('play'));
+    sleepBtn.addEventListener('click', () => handleAnswer('sleep'));
+    newGameBtn.addEventListener('click', init);
+
+    // Iniciar juego
+    init();
+  </script>
+</body>
+</html>
